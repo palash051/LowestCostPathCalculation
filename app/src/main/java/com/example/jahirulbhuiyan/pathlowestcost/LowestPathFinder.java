@@ -55,12 +55,12 @@ public class LowestPathFinder {
         }
 
         List<LowestPathEntry> currentPath = new ArrayList<>(path);
-        int nextResistance = costMatrix.getCost(matrixCells);
+        int nextCost = costMatrix.getCost(matrixCells);
 
-        if (sumPath(currentPath) + nextResistance > maxCost || matrixCells.getCoordinateX() > costMatrix.getWidth()) {
+        if (sumPath(currentPath) + nextCost > maxCost || matrixCells.getCoordinateX() > costMatrix.getWidth()) {
             return currentPath;
         }
-        currentPath.add(new LowestPathEntry(matrixCells, nextResistance));
+        currentPath.add(new LowestPathEntry(matrixCells, nextCost));
 
         List<LowestPathEntry> upRight = findPath(costMatrix, costMatrix.getDiagonalUp(matrixCells), currentPath);
         List<LowestPathEntry> straightRight = findPath(costMatrix, costMatrix.getRight(matrixCells), currentPath);
