@@ -33,8 +33,14 @@ public class LowestPathFinder {
      */
     public List<LowestPathEntry> findPath(CostMatrix costMatrix) {
         List<LowestPathEntry> bestPath = null;
+
+        MatrixCell matrixCell;
         for (int i = 0; i < costMatrix.getHeight(); i++) {
-            List<LowestPathEntry> currentPath = findPath(costMatrix, new MatrixCell(1, i + 1), new ArrayList<LowestPathEntry>());
+            matrixCell=new MatrixCell(1, i + 1);
+            if(costMatrix.getCost(matrixCell)>maxCost) {
+                continue;
+            }
+            List<LowestPathEntry> currentPath = findPath(costMatrix, matrixCell, new ArrayList<LowestPathEntry>());
             if (bestPath == null || sumPath(currentPath) < sumPath(bestPath)) {
                 bestPath = currentPath;
             }
